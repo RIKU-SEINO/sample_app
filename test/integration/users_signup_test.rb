@@ -14,7 +14,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
     assert_template 'users/new'
     assert_select 'div#error_explanation'
-    assert_select 'div.alert'
+    assert_select 'div.alert-danger'
   end
 
   test "valid signup information" do
@@ -28,5 +28,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
+    assert_select 'div.alert-sucess'
+    assert_not  flash.blank? 
   end
 end
