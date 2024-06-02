@@ -2,7 +2,6 @@
 
 // トグルリスナーを追加してクリックをリッスンする
 document.addEventListener("turbo:load", function() {
-  alert("OK")
   let account = document.querySelector("#account");
   if (account) {
     account.addEventListener("click", function(event) {
@@ -12,3 +11,4 @@ document.addEventListener("turbo:load", function() {
     });
   }
 });
+
