@@ -8,7 +8,6 @@ class User < ApplicationRecord
     validates :password, presence: true, length: { minimum: 6 }
     has_secure_password
 
-    # 渡された文字列のハッシュ値を返す
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                     BCrypt::Engine.cost
@@ -22,7 +21,12 @@ class User < ApplicationRecord
     def remember
         self.remember_token = User.new_token
         update_attribute(:remember_digest, User.digest(remember_token))
+        remember_digest
     end
+
+    def session_token
+        remember_digest || remember
+      end
 
     def authenticated?(remember_token)
         return false if remember_digest.nil?
