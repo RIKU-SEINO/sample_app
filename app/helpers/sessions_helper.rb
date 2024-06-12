@@ -27,6 +27,11 @@ module SessionsHelper
         end
       end
     end
+
+    # 渡されたユーザーがカレントユーザーであればtrueを返す
+    def curret_user?(user)
+      user && user == current_user
+    end
   
     # ユーザーがログインしていればtrue、その他ならfalseを返す
     def logged_in?
