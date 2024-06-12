@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       reset_session
       log_in @user
-      flash[:sucess] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
     else
       render 'new', status: :unprocessable_entity
@@ -27,7 +27,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      # 更新成功
+      flash[:success] = "Profile updated"
+      redirect_to @user
     else
       render 'edit', status: :unprocessable_entity
     end
