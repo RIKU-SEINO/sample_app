@@ -29,7 +29,7 @@ module SessionsHelper
     end
 
     # 渡されたユーザーがカレントユーザーであればtrueを返す
-    def curret_user?(user)
+    def correct_user?(user)
       user && user == current_user
     end
   
