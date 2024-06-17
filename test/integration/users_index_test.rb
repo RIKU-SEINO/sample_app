@@ -32,6 +32,7 @@ class UsersIndexAdminTest < UsersIndexAdmin
       unless user == @admin
         assert_select 'a[href=?]', user_path(user), text: user.name
       end
+    end
   end
 
   test "should be able to delete non-admin user" do
