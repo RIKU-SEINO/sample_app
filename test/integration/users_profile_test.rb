@@ -5,8 +5,6 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:michael)
-    @other_user = users(:archer)
-    @user.active_relationships.create(followed_id: @other_user.id)
   end
 
   test "profile display" do
@@ -16,8 +14,8 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_select 'h1', text: @user.name
     assert_select 'h1>img.gravatar'
     assert_match @user.microposts.count.to_s, response.body
-    assert_select 'strong#following', text: "1"
-    assert_select 'strong#followers', text: "0"
+    assert_select 'strong#following', text: "2"
+    assert_select 'strong#followers', text: "2"
     assert_select 'div.pagination'
     @user.microposts.paginate(page: 1).each do |micropost|
       assert_match micropost.content, response.body
